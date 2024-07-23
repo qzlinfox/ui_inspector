@@ -6,7 +6,7 @@ import { IconAvatar } from '@douyinfe/semi-icons-lab';
 export default function NavApp() {
   return (
     <Nav
-      bodyStyle={{ height: 320 }}
+      style={{ height: '100%' }}
       items={[
         { itemKey: 'user', text: '设备管理', icon: <IconAvatar /> }
       ]}

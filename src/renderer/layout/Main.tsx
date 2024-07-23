@@ -1,5 +1,12 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import DeviceManager from '@/renderer/device/DeviceManager';
+
 export default function Main() {
   return (
-    <div>主内容</div>
+    // <BrowserRouter>
+      <Routes>
+        <Route path="/" index element={<DeviceManager />} />
+      </Routes>
+    // </BrowserRouter>
   )
 }

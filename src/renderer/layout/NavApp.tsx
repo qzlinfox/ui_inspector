@@ -1,7 +1,7 @@
 
 import { Nav } from '@douyinfe/semi-ui';
 import { IconSemiLogo } from '@douyinfe/semi-icons';
-import { IconAvatar } from '@douyinfe/semi-icons-lab';
+import { IconPopconfirm, IconTransfer } from '@douyinfe/semi-icons-lab';
 import { Link } from "react-router-dom";
 
 export default function NavApp() {
@@ -10,7 +10,8 @@ export default function NavApp() {
       style={{ height: '100%' }}
       renderWrapper={({ itemElement, isSubNav, isInSubNav, props }) => {
         const routerMap = {
-          deviceManager: "/"
+          deviceManager: "/",
+          connectManager: "/connect"
         };
         return (
           <Link
@@ -22,8 +23,10 @@ export default function NavApp() {
         );
       }}
       items={[
-        { itemKey: 'deviceManager', text: '设备管理', icon: <IconAvatar /> }
+        { itemKey: 'deviceManager', text: '设备管理', icon: <IconPopconfirm /> },
+        { itemKey: 'connectManager', text: '连接管理', icon: <IconTransfer /> }
       ]}
+      defaultSelectedKeys={['deviceManager']}
       header={{
         logo: <IconSemiLogo style={{ height: '36px', fontSize: 36 }} />,
         text: 'UI Inspector'

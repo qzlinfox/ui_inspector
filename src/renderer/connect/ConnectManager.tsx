@@ -1,4 +1,6 @@
 import { TabPane, Tabs } from '@douyinfe/semi-ui';
+import DeviceConnectTab from '@/renderer/connect/DeviceConnectTab';
+import { useState } from 'react';
 
 export default function ConnectManager() {
 
@@ -20,11 +22,16 @@ export default function ConnectManager() {
     }
   }
 
+  const [curTab, setCurTab] = useState()
+
   return (
-    <Tabs type="card">
+    <Tabs type="card" onChange={ (tabKey) => {
+      console.log('>>>> change tab key:', tabKey);
+      setCurTab(tabKey)
+    } }>
       {state.tabList.map(t => (
         <TabPane closable={t.closable} tab={t.tab} itemKey={t.itemKey} key={t.itemKey}>
-          {t.text}
+          <DeviceConnectTab tabKey={curTab}/>
         </TabPane>
       ))}
     </Tabs>

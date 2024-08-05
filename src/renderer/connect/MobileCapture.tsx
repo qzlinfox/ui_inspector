@@ -1,7 +1,12 @@
 import { Card } from '@douyinfe/semi-ui';
 import React, { useState } from 'react';
+import './Capture.css'
 
 export default function MobileCapture({ tabKey }) {
+  const [shadingWidth, setShadingWidth] = useState(0)
+  const [shadingHeight, setShadingHeight] = useState(0)
+  const [shadingLeft, setShadingLeft] = useState(0)
+  const [shadingTop, setShadingTop] = useState(0)
   const canvasId = 'mobile-capture-canvas'
   const captureRef = React.useRef(null)
   const canvasRef = React.useRef(null)
@@ -31,7 +36,20 @@ export default function MobileCapture({ tabKey }) {
       const x = parseInt(String((event.clientX - rect.left) / rect.width * canvas.width))
       const y = parseInt(String((event.clientY - rect.top) / rect.height * canvas.height))
       console.log('点击手机屏幕:' + x + ',' + y)
+
+      // 获取node节点
+
+      // 绘制边框
+      drawShadingBorder(x, y, 50, 20)
     }
+  }
+
+  function drawShadingBorder(x, y, width, height) {
+    console.log('>>> drawShadingBorder now:', new Date().toTimeString());
+    setShadingLeft(x)
+    setShadingTop(y)
+    setShadingWidth(width)
+    setShadingHeight(height)
   }
 
   function loadImage() {
@@ -54,6 +72,7 @@ export default function MobileCapture({ tabKey }) {
   return(
     <Card bordered={false}>
       <div ref={captureRef} width="100%" height="100%">
+        <div className="capture-shading" style={{ width: shadingWidth + 'px', height:shadingHeight + 'px', left:shadingLeft + 'px', top:shadingTop + 'px' }}/>
         <canvas id={ canvasId } ref={canvasRef} width="100%" height="100%" />
       </div>
     </Card>
